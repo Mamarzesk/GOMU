@@ -1,7 +1,6 @@
 from typing import List, Tuple
 
 import numpy as np
-import SimpleITK as sitk
 from scipy.interpolate import RegularGridInterpolator
 from scipy.optimize import differential_evolution
 from scipy.spatial.transform import Rotation
