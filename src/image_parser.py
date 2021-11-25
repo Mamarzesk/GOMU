@@ -16,6 +16,10 @@ class AbstractImageParser(ABC):
     def parse(self):
         ...
 
+    @abstractmethod
+    def get_array(self):
+        ...
+
 
 class MINCParser(AbstractImageParser):
     image_io = "MINCImageIO"
@@ -37,10 +41,13 @@ class MINCParser(AbstractImageParser):
             for i in reversed(range(dim))
         )
 
-    def indices_to_positions(self, indices: Arrays) -> Arrays:
+    def compute_positions(self, indices: Arrays) -> Arrays:
         dim: int = self.image.GetDimension()
         origin: Tuple[float, ...] = self.image.GetOrigin()
         spacing: Tuple[float, ...] = self.image.GetSpacing()
         return np.transpose(np.array(tuple(
             origin[i] + indices[i]*spacing[i] for i in reversed(range(dim))
         )))
+
+    def get_array(self):
+        return sitk.GetArrayFromImage(self.image)

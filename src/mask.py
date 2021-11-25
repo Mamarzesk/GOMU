@@ -5,7 +5,7 @@ import numpy as np
 from .typing import Arrays
 
 
-class AbstractMaskGenerator(ABC):
+class AbstractMasker(ABC):
     @abstractmethod
     def __init__(self) -> None:
         ...
@@ -19,7 +19,7 @@ class AbstractMaskGenerator(ABC):
         ...
 
 
-class GradientThresholdMaskGenerator(AbstractMaskGenerator):
+class GradientThresholdMasker(AbstractMasker):
     def __init__(self, gradients: Arrays, threshold: float) -> None:
         self.gradients = gradients
         self.masking_base = self.compute_magnitude(self.gradients)

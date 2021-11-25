@@ -13,7 +13,7 @@ class AbstractSimilarityComputer:
         ...
 
 
-class GradientsOrientationComputer(AbstractSimilarityComputer):
+class GradientsOrientation(AbstractSimilarityComputer):
     def __init__(
         self, fixed_gradients: np.ndarray, moving_gradients: np.ndarray
     ) -> None:
